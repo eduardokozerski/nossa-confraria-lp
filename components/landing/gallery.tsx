@@ -8,37 +8,37 @@ import { X } from "lucide-react"
 
 const galleryImages = [
   {
-    src: "https://raw.githubusercontent.com/eduardokozerski/nossa-confraria-lp/refs/heads/main/public/images/gallery-venue-1.jpg",
+    src: "/images/gallery-venue-1.jpg",
     alt: "Espaço para eventos",
     category: "Espaço",
   },
   {
-    src: "https://raw.githubusercontent.com/eduardokozerski/nossa-confraria-lp/1adbd949ebf5025afa16a9627e4ae7c1446e6c9f/public/images/gallery-food-bbq-1.jpeg",
+    src: "/images/gallery-food-bbq-1.jpeg",
     alt: "Buffet de churrasco",
     category: "Gastronomia",
   },
   {
-    src: "https://raw.githubusercontent.com/eduardokozerski/nossa-confraria-lp/refs/heads/main/public/images/gallery-venue-2.jpg",
+    src: "/images/gallery-venue-2.jpg",
     alt: "Decoração elegante",
     category: "Espaço",
   },
   {
-    src: "https://raw.githubusercontent.com/eduardokozerski/nossa-confraria-lp/1adbd949ebf5025afa16a9627e4ae7c1446e6c9f/public/images/gallery-food-bbq-2.jpeg",
+    src: "/images/gallery-food-bbq-2.jpeg",
     alt: "Cortes especiais",
     category: "Gastronomia",
   },
   {
-    src: "https://raw.githubusercontent.com/eduardokozerski/nossa-confraria-lp/1adbd949ebf5025afa16a9627e4ae7c1446e6c9f/public/images/gallery-venue-3.jpeg",
+    src: "/images/gallery-venue-3.jpg",
     alt: "Ambiente noturno",
     category: "Espaço",
   },
   {
-    src: "https://raw.githubusercontent.com/eduardokozerski/nossa-confraria-lp/1adbd949ebf5025afa16a9627e4ae7c1446e6c9f/public/images/gallery-food-bbq-3.jpeg",
+    src: "/images/gallery-food-bbq-3.jpeg",
     alt: "Preparação no fogo",
     category: "Gastronomia",
   },
   {
-    src: "https://raw.githubusercontent.com/eduardokozerski/nossa-confraria-lp/1adbd949ebf5025afa16a9627e4ae7c1446e6c9f/public/images/gallery-food-cold-1.jpeg",
+    src: "/images/gallery-food-cold-1.jpeg",
     alt: "Entradas frias",
     category: "Gastronomia",
   },

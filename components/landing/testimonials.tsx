@@ -8,42 +8,42 @@ import { useState, useCallback, useEffect } from "react"
 
 const testimonials = [
   {
-    image: "https://raw.githubusercontent.com/eduardokozerski/nossa-confraria-lp/refs/heads/main/public/images/feedback-1.jpg",
+    image: "/images/feedback-1.PNG",
     name: "Cliente Satisfeito",
     event: "Casamento",
   },
   {
-    image: "https://raw.githubusercontent.com/eduardokozerski/nossa-confraria-lp/1adbd949ebf5025afa16a9627e4ae7c1446e6c9f/public/images/feedback-2.jpeg",
+    image: "/images/feedback-2.jpeg",
     name: "Cliente Satisfeito",
     event: "Evento Social",
   },
   {
-    image: "https://raw.githubusercontent.com/eduardokozerski/nossa-confraria-lp/1adbd949ebf5025afa16a9627e4ae7c1446e6c9f/public/images/feedback-3.jpeg",
+    image: "/images/feedback-3.jpeg",
     name: "Cliente Satisfeito",
     event: "Formatura",
   },
   {
-    image: "https://raw.githubusercontent.com/eduardokozerski/nossa-confraria-lp/1adbd949ebf5025afa16a9627e4ae7c1446e6c9f/public/images/feedback-4.jpeg",
+    image: "/images/feedback-4.jpeg",
     name: "Cliente Satisfeito",
     event: "Aniversário",
   },
   {
-    image: "https://raw.githubusercontent.com/eduardokozerski/nossa-confraria-lp/1adbd949ebf5025afa16a9627e4ae7c1446e6c9f/public/images/feedback-5.jpeg",
+    image: "/images/feedback-5.jpeg",
     name: "Cliente Satisfeito",
     event: "Evento Corporativo",
   },
   {
-    image: "https://raw.githubusercontent.com/eduardokozerski/nossa-confraria-lp/1adbd949ebf5025afa16a9627e4ae7c1446e6c9f/public/images/feedback-6.jpeg",
+    image: "/images/feedback-6.jpeg",
     name: "Cliente Satisfeito",
     event: "Confraternização",
   },
   {
-    image: "https://raw.githubusercontent.com/eduardokozerski/nossa-confraria-lp/1adbd949ebf5025afa16a9627e4ae7c1446e6c9f/public/images/feedback-7.jpeg",
+    image: "/images/feedback-7.jpeg",
     name: "Cliente Satisfeito",
     event: "Celebração",
   },
   {
-    image: "https://raw.githubusercontent.com/eduardokozerski/nossa-confraria-lp/1adbd949ebf5025afa16a9627e4ae7c1446e6c9f/public/images/feedback-8.jpeg",
+    image: "/images/feedback-8.jpeg",
     name: "Cliente Satisfeito",
     event: "Evento Especial",
   },

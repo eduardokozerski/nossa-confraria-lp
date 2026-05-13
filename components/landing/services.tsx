@@ -9,22 +9,19 @@ const services = [
     title: "Buffet Tradicional",
     description:
       "16 entradas volantes e jantar completo. Mesas de sustentação opcionais (mineira, antepasto e fast food), contratadas à parte.",
-    image:
-      "https://raw.githubusercontent.com/eduardokozerski/nossa-confraria-lp/1adbd949ebf5025afa16a9627e4ae7c1446e6c9f/public/images/services-food-cold-1.jpeg",
+    image: "/images/services-food-cold-1.jpeg",
   },
   {
     title: "Buffet de Fogo",
     description:
       "American Barbecue, fogo de chão e parrilla. Um diferencial único na região.",
-    image:
-      "https://raw.githubusercontent.com/eduardokozerski/nossa-confraria-lp/1adbd949ebf5025afa16a9627e4ae7c1446e6c9f/public/images/services-food-bbq-1.jpeg",
+    image: "/images/services-food-bbq-1.jpeg",
   },
   {
     title: "Espaço Próprio",
     description:
       "Ambiente exclusivo com bosque para cerimônias, perfeito para seu evento dos sonhos.",
-    image:
-      "https://raw.githubusercontent.com/eduardokozerski/nossa-confraria-lp/refs/heads/main/public/images/services-venue-1.jpg",
+    image: "/images/services-venue-1.jpg",
   },
 ];
 

@@ -9,7 +9,7 @@ export function Footer() {
           {/* Logo */}
           <a href="#" className="relative h-12 w-40 md:h-14 md:w-48">
             <Image
-              src="https://raw.githubusercontent.com/eduardokozerski/nossa-confraria-lp/refs/heads/main/public/images/logo-1.png"
+              src="/images/logo-1.png"
               alt="Nossa Confraria Buffet"
               fill
               className="object-contain"
