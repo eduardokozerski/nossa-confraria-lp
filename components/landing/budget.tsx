@@ -39,8 +39,8 @@ const questionnaireSchema = z
     phone: z.string().trim().min(1, "Informe um telefone para contato."),
     eventType: z.string().min(1, "Selecione o tipo de evento."),
     eventTypeOther: z.string().trim().optional(),
-    eventDate: z.string().trim().optional(),
-    eventStartTime: z.string().trim().optional(),
+    eventDate: z.string().trim().min(1, "Informe a data do evento."),
+    eventStartTime: z.string().trim().min(1, "Informe o horário de início."),
     buffetType: z.string().min(1, "Selecione o tipo de buffet."),
     buffetTypeOther: z.string().trim().optional(),
     guests: z.coerce
@@ -98,8 +98,8 @@ type BudgetQuestionnairePayload = {
   phone: string;
   event: {
     type: string;
-    date?: string;
-    startTime?: string;
+    date: string;
+    startTime: string;
   };
   buffet: {
     type: string;
@@ -151,15 +151,40 @@ function resolveSelectValue(
   return labels[value] ?? value;
 }
 
+function normalizePhoneNumber(rawPhoneNumber: string): string {
+  const digitsOnly = rawPhoneNumber.replace(/\D/g, "");
+  if (!digitsOnly) return "";
+  if (digitsOnly.startsWith("55")) return digitsOnly;
+  if (digitsOnly.length === 10 || digitsOnly.length === 11)
+    return `55${digitsOnly}`;
+  return digitsOnly;
+}
+
 async function submitBudgetQuestionnaire(
   _payload: BudgetQuestionnairePayload,
 ): Promise<void> {
-  await Promise.resolve();
+  const response = await fetch("/api/lip7/budget", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(_payload),
+  });
+
+  if (response.ok) return;
+
+  const errorBody = await response.json().catch(() => null);
+  const message =
+    typeof errorBody?.error === "string"
+      ? errorBody.error
+      : "Não foi possível enviar suas informações. Tente novamente em instantes.";
+  throw new Error(message);
 }
 
 export function Budget() {
   const [isQuestionnaireOpen, setIsQuestionnaireOpen] = useState(false);
-  const [submitState, setSubmitState] = useState<"idle" | "success">("idle");
+  const [submitState, setSubmitState] = useState<
+    "idle" | "submitting" | "success" | "error"
+  >("idle");
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const firstFieldRef = useRef<HTMLInputElement | null>(null);
 
   const { ref, inView } = useInView({
@@ -215,17 +240,20 @@ export function Budget() {
   }, [isQuestionnaireOpen]);
 
   const onSubmit = async (values: QuestionnaireFormValues) => {
+    setSubmitError(null);
+    setSubmitState("submitting");
+
     const payload: BudgetQuestionnairePayload = {
       name: values.name,
-      phone: values.phone,
+      phone: normalizePhoneNumber(values.phone),
       event: {
         type: resolveSelectValue(
           values.eventType,
           values.eventTypeOther,
           eventTypeLabels,
         ),
-        date: values.eventDate || undefined,
-        startTime: values.eventStartTime || undefined,
+        date: values.eventDate,
+        startTime: values.eventStartTime,
       },
       buffet: {
         type: resolveSelectValue(
@@ -249,8 +277,17 @@ export function Budget() {
       notes: values.notes || undefined,
     };
 
-    await submitBudgetQuestionnaire(payload);
-    setSubmitState("success");
+    try {
+      await submitBudgetQuestionnaire(payload);
+      setSubmitState("success");
+    } catch (error) {
+      setSubmitState("error");
+      setSubmitError(
+        error instanceof Error
+          ? error.message
+          : "Não foi possível enviar suas informações. Tente novamente em instantes.",
+      );
+    }
   };
 
   return (
@@ -329,6 +366,11 @@ export function Budget() {
                 <p className="text-foreground">
                   Recebemos suas informações. Em breve entraremos em contato.
                 </p>
+              </div>
+            )}
+            {submitState === "error" && submitError && (
+              <div className="mb-8 border border-destructive/30 bg-destructive/5 p-4">
+                <p className="text-foreground">{submitError}</p>
               </div>
             )}
 
@@ -688,13 +730,16 @@ export function Budget() {
                     variant="outline"
                     onClick={() => {
                       setSubmitState("idle");
+                      setSubmitError(null);
                       form.reset();
                       firstFieldRef.current?.focus();
                     }}
                   >
                     Limpar
                   </Button>
-                  <Button type="submit">Enviar</Button>
+                  <Button type="submit" disabled={submitState === "submitting"}>
+                    {submitState === "submitting" ? "Enviando..." : "Enviar"}
+                  </Button>
                 </div>
               </form>
             </Form>
