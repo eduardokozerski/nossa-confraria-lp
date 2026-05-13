@@ -127,9 +127,22 @@ export async function POST(request: Request) {
     });
 
     return NextResponse.json({ ok: true });
-  } catch {
+  } catch (error) {
+    const errorMessage =
+      error instanceof Error ? error.message : "Erro desconhecido";
+
+    console.error("Falha ao enviar e-mail do orçamento", {
+      message: errorMessage,
+      name: error instanceof Error ? error.name : undefined,
+    });
+
     return NextResponse.json(
-      { error: "Não foi possível enviar suas informações. Tente novamente." },
+      {
+        error:
+          process.env.NODE_ENV === "production"
+            ? "Não foi possível enviar suas informações. Tente novamente."
+            : `Não foi possível enviar suas informações: ${errorMessage}`,
+      },
       { status: 502 },
     );
   }
